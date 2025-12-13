@@ -553,6 +553,41 @@ body {
     border-radius: 8px;
 }
 
+.lightbox-info {
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+}
+
+.lightbox-prompt {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 12px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 15px;
+    line-height: 1.6;
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+.lightbox-prompt:empty {
+    display: none;
+}
+
+.lightbox-meta {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 13px;
+}
+
+.lightbox-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .lightbox-actions {
     display: flex;
     gap: 12px;

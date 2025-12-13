@@ -321,6 +321,9 @@ function openLightbox(mediaUrl, isVideo, generation) {
     const image = document.getElementById('lightboxImage');
     const video = document.getElementById('lightboxVideo');
     const downloadBtn = document.getElementById('lightboxDownload');
+    const copyPromptBtn = document.getElementById('lightboxCopyPrompt');
+    const promptDiv = document.getElementById('lightboxPrompt');
+    const metaDiv = document.getElementById('lightboxMeta');
     
     if (isVideo) {
         image.style.display = 'none';
@@ -332,10 +335,43 @@ function openLightbox(mediaUrl, isVideo, generation) {
         image.src = mediaUrl;
     }
     
+    // Display prompt if available
+    const prompt = generation.input_data?.prompt || generation.input_data?.video_file || '';
+    if (prompt) {
+        promptDiv.textContent = prompt;
+        copyPromptBtn.style.display = 'flex';
+        copyPromptBtn.onclick = () => copyPrompt(prompt);
+    } else {
+        promptDiv.textContent = '';
+        copyPromptBtn.style.display = 'none';
+    }
+    
+    // Display metadata
+    metaDiv.textContent = `${generation.tool_name} • ${new Date(generation.created_at).toLocaleDateString()}`;
+    
     // Set download handler
     downloadBtn.onclick = () => downloadMedia(mediaUrl, generation);
     
     modal.classList.add('show');
+}
+
+function copyPrompt(prompt) {
+    navigator.clipboard.writeText(prompt).then(() => {
+        const btn = document.getElementById('lightboxCopyPrompt');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<span>✓</span><span>Copied!</span>';
+        btn.style.background = 'rgba(76, 175, 80, 0.2)';
+        btn.style.borderColor = '#4CAF50';
+        
+        setTimeout(() => {
+            btn.innerHTML = originalText;
+            btn.style.background = '';
+            btn.style.borderColor = '';
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        alert('Failed to copy prompt');
+    });
 }
 
 function closeLightbox() {

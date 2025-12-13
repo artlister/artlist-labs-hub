@@ -22,6 +22,14 @@ const TOOLS = [
         description: 'Generate captions for AI training data',
         icon: '🎨',
         url: 'https://photo-caption-processor.vercel.app/'
+    },
+        // Prompt Journey! 
+    {
+        id: 'prompt-journey',
+        name: 'Prompt Journey',
+        description: 'A prompt and visual exploration tool',
+        icon: '🎨',
+        url: 'https://prompt-journey-eta.vercel.app/'
     }
 ];
 

@@ -315,6 +315,7 @@ async function loadRecentGenerations(userId) {
 }
 
 // Lightbox functions
+// Lightbox functions
 function openLightbox(mediaUrl, isVideo, generation) {
     const modal = document.getElementById('lightboxModal');
     const image = document.getElementById('lightboxImage');
@@ -346,26 +347,54 @@ function closeLightbox() {
     video.src = '';
 }
 
-function downloadMedia(url, generation) {
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${generation.tool_name}_${new Date(generation.created_at).toISOString().split('T')[0]}.${url.includes('.mp4') ? 'mp4' : 'jpg'}`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+async function downloadMedia(url, generation) {
+    try {
+        // Fetch the file as a blob
+        const response = await fetch(url);
+        const blob = await response.blob();
+        
+        // Create download link
+        const blobUrl = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = blobUrl;
+        a.download = `${generation.tool_name}_${new Date(generation.created_at).toISOString().split('T')[0]}.${url.includes('.mp4') ? 'mp4' : 'jpg'}`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        
+        // Clean up the blob URL
+        window.URL.revokeObjectURL(blobUrl);
+    } catch (error) {
+        console.error('Download failed:', error);
+        // Fallback: open in new tab
+        window.open(url, '_blank');
+    }
 }
 
-// Close lightbox handlers
-document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
-document.getElementById('lightboxModal').addEventListener('click', (e) => {
-    if (e.target.id === 'lightboxModal') {
-        closeLightbox();
+// Initialize lightbox event listeners when DOM is ready
+window.addEventListener('DOMContentLoaded', () => {
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxModal = document.getElementById('lightboxModal');
+    
+    if (lightboxClose) {
+        lightboxClose.addEventListener('click', closeLightbox);
     }
-});
-
-// Close on Escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        closeLightbox();
+    
+    if (lightboxModal) {
+        lightboxModal.addEventListener('click', (e) => {
+            if (e.target.id === 'lightboxModal') {
+                closeLightbox();
+            }
+        });
     }
+    
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const modal = document.getElementById('lightboxModal');
+            if (modal && modal.classList.contains('show')) {
+                closeLightbox();
+            }
+        }
+    });
 });

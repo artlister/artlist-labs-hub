@@ -335,9 +335,9 @@ function openLightbox(mediaUrl, isVideo, generation) {
         image.src = mediaUrl;
     }
     
-    // Display prompt if available
-    const prompt = generation.input_data?.prompt || generation.input_data?.video_file || '';
-    if (prompt) {
+    // Display prompt only for images (not videos)
+    const prompt = generation.input_data?.prompt || '';
+    if (prompt && !isVideo) {
         promptDiv.textContent = prompt;
         copyPromptBtn.style.display = 'flex';
         copyPromptBtn.onclick = () => copyPrompt(prompt);

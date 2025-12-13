@@ -419,6 +419,7 @@ body {
     border-radius: 12px;
     overflow: hidden;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .generation-card:hover {
@@ -428,13 +429,11 @@ body {
 
 .generation-image {
     width: 100%;
-    max-height: 400px;
-    object-fit: contain;  /* Changed from 'cover' to 'contain' */
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
     background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
+    display: block;
 }
-
-/* Remove the fixed aspect-ratio so videos can be any size */
 
 .generation-info {
     padding: 16px;

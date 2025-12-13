@@ -107,6 +107,59 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
+/* Google Sign In Button */
+.google-btn {
+    width: 100%;
+    padding: 14px 24px;
+    background-color: #ffffff;
+    color: #3c4043;
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: all 0.2s ease;
+    margin-bottom: 24px;
+}
+
+.google-btn:hover {
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.google-btn svg {
+    flex-shrink: 0;
+}
+
+/* Divider */
+.divider {
+    position: relative;
+    text-align: center;
+    margin: 24px 0;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.divider span {
+    position: relative;
+    background-color: #0a0a0a;
+    padding: 0 16px;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 14px;
+}
+
 /* Auth Page */
 .auth-container {
     display: flex;
@@ -194,12 +247,41 @@ body {
     border-color: rgba(255, 215, 0, 0.5);
 }
 
+.forgot-password-link {
+    text-align: right;
+    margin-top: -8px;
+    margin-bottom: 8px;
+}
+
+.forgot-password-link a,
+.back-to-login a {
+    color: rgba(255, 215, 0, 0.9);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.forgot-password-link a:hover,
+.back-to-login a:hover {
+    color: #FFD700;
+    text-decoration: underline;
+}
+
+.back-to-login {
+    text-align: center;
+    margin-top: 16px;
+}
+
 .error-message {
     color: #ff6b6b;
     font-size: 14px;
     margin-top: 8px;
     min-height: 20px;
     text-align: center;
+}
+
+.error-message.success {
+    color: #4ade80;
 }
 
 /* Dashboard */

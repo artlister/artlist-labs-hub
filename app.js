@@ -257,7 +257,46 @@ function loadTools() {
 async function loadRecentGenerations(userId) {
     const recentGrid = document.getElementById('recent-generations');
     
-    // TODO: Replace with actual database query
-    // For now, show empty state
-    recentGrid.innerHTML = '<p class="empty-state">Your recent generations will appear here</p>';
+    try {
+        const { data: generations, error } = await supabase
+            .from('generations')
+            .select('*')
+            .eq('user_id', userId)
+            .order('created_at', { ascending: false })
+            .limit(8);
+        
+        if (error) {
+            console.error('Error loading generations:', error);
+            recentGrid.innerHTML = '<p class="empty-state">Error loading generations</p>';
+            return;
+        }
+        
+        if (generations && generations.length > 0) {
+            recentGrid.innerHTML = '';
+            generations.forEach(gen => {
+                const card = document.createElement('div');
+                card.className = 'generation-card';
+                
+                const mediaUrl = gen.media_urls && gen.media_urls[0];
+                const isVideo = mediaUrl && (mediaUrl.includes('.mp4') || mediaUrl.includes('video'));
+                
+                card.innerHTML = `
+                    ${mediaUrl ? (isVideo ? 
+                        `<video src="${mediaUrl}" class="generation-image" controls></video>` :
+                        `<img src="${mediaUrl}" class="generation-image" alt="Generation">`) : ''}
+                    <div class="generation-info">
+                        <div class="generation-tool">${gen.tool_name}</div>
+                        <div class="generation-date">${new Date(gen.created_at).toLocaleDateString()}</div>
+                    </div>
+                `;
+                
+                recentGrid.appendChild(card);
+            });
+        } else {
+            recentGrid.innerHTML = '<p class="empty-state">Your recent generations will appear here</p>';
+        }
+    } catch (err) {
+        console.error('Exception loading generations:', err);
+        recentGrid.innerHTML = '<p class="empty-state">Error loading generations</p>';
+    }
 }

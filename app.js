@@ -11,31 +11,17 @@ const TOOLS = [
     {
         id: 'auto-subtitle',
         name: 'Auto Subtitle',
-        description: 'Automatically generate and add subtitles to your videos using AI',
+        description: 'Automatically generate and add subtitles to your videos using AI in any language',
         icon: '🎬',
-        url: 'https://auto-subtitle.vercel.app'
+        url: 'https://auto-subtitle-two.vercel.app/'
     },
     // Add more tools as you deploy them
     {
-        id: 'ai-image',
-        name: 'AI Image',
-        description: 'Generate stunning images from text descriptions',
+        id: 'photo-caption',
+        name: 'Photo Caption Processor for AI Training',
+        description: 'Generate captions for AI training data',
         icon: '🎨',
-        url: '#' // Replace with actual URL when deployed
-    },
-    {
-        id: 'ai-video',
-        name: 'AI Video',
-        description: 'Create professional videos with AI assistance',
-        icon: '🎥',
-        url: '#' // Replace with actual URL when deployed
-    },
-    {
-        id: 'ai-voiceover',
-        name: 'AI Voiceover',
-        description: 'Transform text into natural-sounding speech',
-        icon: '🎙️',
-        url: '#' // Replace with actual URL when deployed
+        url: 'https://photo-caption-processor.vercel.app/'
     }
 ];
 

@@ -435,6 +435,20 @@ body {
     display: block;
 }
 
+.generation-image:fullscreen {
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+    background: #000;
+}
+
+.generation-image:-webkit-full-screen {
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+    background: #000;
+}
+
 .generation-info {
     padding: 16px;
 }

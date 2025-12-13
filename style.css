@@ -428,10 +428,13 @@ body {
 
 .generation-image {
     width: 100%;
-    aspect-ratio: 16/9;
-    object-fit: cover;
+    max-height: 400px;
+    object-fit: contain;  /* Changed from 'cover' to 'contain' */
     background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
 }
+
+/* Remove the fixed aspect-ratio so videos can be any size */
 
 .generation-info {
     padding: 16px;

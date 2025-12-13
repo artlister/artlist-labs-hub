@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artlist Labs - Experimental Tools</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Auth Page -->
+    <div id="auth-page" class="page">
+        <nav class="top-nav">
+            <div class="nav-content">
+                <div class="logo">
+                    <span class="logo-icon">⚡</span>
+                    <span class="logo-text">Artlist Labs</span>
+                </div>
+            </div>
+        </nav>
+
+        <div class="auth-container">
+            <div class="auth-box">
+                <h1 class="auth-title">What would you like to create today? ✨</h1>
+                <p class="auth-subtitle">Sign in to access your experimental tools</p>
+                
+                <div class="auth-tabs">
+                    <button class="auth-tab active" onclick="showLogin()">Sign In</button>
+                    <button class="auth-tab" onclick="showSignup()">Create Account</button>
+                </div>
+                
+                <!-- Login Form -->
+                <form id="login-form" class="auth-form">
+                    <div class="input-group">
+                        <input type="email" id="login-email" placeholder="Email address" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="login-password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="primary-btn">Sign In</button>
+                    <p class="error-message" id="login-error"></p>
+                </form>
+                
+                <!-- Signup Form -->
+                <form id="signup-form" class="auth-form hidden">
+                    <div class="input-group">
+                        <input type="email" id="signup-email" placeholder="Email address" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="signup-password" placeholder="Password (min 6 characters)" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="signup-password-confirm" placeholder="Confirm password" required>
+                    </div>
+                    <button type="submit" class="primary-btn">Create Account</button>
+                    <p class="error-message" id="signup-error"></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div id="dashboard-page" class="page hidden">
+        <nav class="top-nav">
+            <div class="nav-content">
+                <div class="logo">
+                    <span class="logo-icon">⚡</span>
+                    <span class="logo-text">Artlist Labs</span>
+                </div>
+                <div class="nav-right">
+                    <span class="user-badge" id="user-email"></span>
+                    <button onclick="logout()" class="secondary-btn">Sign Out</button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="main-content">
+            <div class="hero-section">
+                <h1 class="hero-title">What would you like to create today? ✨</h1>
+                <p class="hero-subtitle">Choose from our experimental AI tools and automations</p>
+            </div>
+
+            <div class="tools-section">
+                <div class="tools-grid" id="tools-grid">
+                    <!-- Tools will be dynamically loaded here -->
+                </div>
+            </div>
+
+            <div class="recent-section">
+                <h2 class="section-title">Recent Generations</h2>
+                <div id="recent-generations" class="recent-grid">
+                    <p class="empty-state">Your recent generations will appear here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+</body>
+</html>

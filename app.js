@@ -290,13 +290,18 @@ async function loadRecentGenerations(userId) {
                 
                 card.innerHTML = `
                     ${mediaUrl ? (isVideo ? 
-                        `<video src="${mediaUrl}" class="generation-image" controls></video>` :
+                        `<video src="${mediaUrl}" class="generation-image"></video>` :
                         `<img src="${mediaUrl}" class="generation-image" alt="Generation">`) : ''}
                     <div class="generation-info">
                         <div class="generation-tool">${gen.tool_name}</div>
                         <div class="generation-date">${new Date(gen.created_at).toLocaleDateString()}</div>
                     </div>
                 `;
+                
+                // Add click handler to open lightbox
+                card.addEventListener('click', () => {
+                    openLightbox(mediaUrl, isVideo, gen);
+                });
                 
                 recentGrid.appendChild(card);
             });
@@ -308,3 +313,59 @@ async function loadRecentGenerations(userId) {
         recentGrid.innerHTML = '<p class="empty-state">Error loading generations</p>';
     }
 }
+
+// Lightbox functions
+function openLightbox(mediaUrl, isVideo, generation) {
+    const modal = document.getElementById('lightboxModal');
+    const image = document.getElementById('lightboxImage');
+    const video = document.getElementById('lightboxVideo');
+    const downloadBtn = document.getElementById('lightboxDownload');
+    
+    if (isVideo) {
+        image.style.display = 'none';
+        video.style.display = 'block';
+        video.src = mediaUrl;
+    } else {
+        video.style.display = 'none';
+        image.style.display = 'block';
+        image.src = mediaUrl;
+    }
+    
+    // Set download handler
+    downloadBtn.onclick = () => downloadMedia(mediaUrl, generation);
+    
+    modal.classList.add('show');
+}
+
+function closeLightbox() {
+    const modal = document.getElementById('lightboxModal');
+    const video = document.getElementById('lightboxVideo');
+    
+    modal.classList.remove('show');
+    video.pause();
+    video.src = '';
+}
+
+function downloadMedia(url, generation) {
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${generation.tool_name}_${new Date(generation.created_at).toISOString().split('T')[0]}.${url.includes('.mp4') ? 'mp4' : 'jpg'}`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+
+// Close lightbox handlers
+document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+document.getElementById('lightboxModal').addEventListener('click', (e) => {
+    if (e.target.id === 'lightboxModal') {
+        closeLightbox();
+    }
+});
+
+// Close on Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeLightbox();
+    }
+});

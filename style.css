@@ -809,3 +809,47 @@ body {
 .all-generations-grid .empty-state {
     grid-column: 1 / -1;
 }
+
+.all-generations-grid .empty-state {
+    grid-column: 1 / -1;
+}
+
+/* Add this new section below */
+.all-generations-grid .generation-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.all-generations-grid .generation-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.all-generations-grid .generation-image {
+    width: 100%;
+    aspect-ratio: auto;
+    max-height: 300px;
+    object-fit: cover;
+    background-color: rgba(255, 255, 255, 0.05);
+    display: block;
+}
+
+.all-generations-grid .generation-info {
+    padding: 12px;
+}
+
+.all-generations-grid .generation-tool {
+    font-size: 12px;
+    color: rgba(255, 215, 0, 0.9);
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.all-generations-grid .generation-date {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+}

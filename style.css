@@ -464,7 +464,7 @@ body {
     border-color: rgba(255, 255, 255, 0.15);
 }
 
-.generation-image {
+.recent-grid .generation-image {
     width: 100%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
@@ -831,7 +831,7 @@ body {
 
 .all-generations-grid .generation-image {
     width: 100%;
-    aspect-ratio: auto;
+    aspect-ratio: auto !important;
     max-height: 300px;
     object-fit: cover;
     background-color: rgba(255, 255, 255, 0.05);

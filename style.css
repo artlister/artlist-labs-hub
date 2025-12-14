@@ -779,11 +779,31 @@ body {
 .all-generations-grid {
     flex: 1;
     overflow-y: auto;
+    overflow-x: hidden;
     padding: 32px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
     align-content: start;
+    max-height: calc(90vh - 200px);
+}
+
+.all-generations-grid::-webkit-scrollbar {
+    width: 8px;
+}
+
+.all-generations-grid::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.all-generations-grid::-webkit-scrollbar-thumb {
+    background: rgba(255, 215, 0, 0.3);
+    border-radius: 4px;
+}
+
+.all-generations-grid::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 215, 0, 0.5);
 }
 
 .all-generations-grid .empty-state {

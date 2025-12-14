@@ -18,7 +18,7 @@ const TOOLS = [
     // Add more tools as you deploy them
     {
         id: 'photo-caption',
-        name: 'Photo Caption Processor for AI Training',
+        name: 'Auto Caption for Training',
         description: 'Generate captions for AI training data',
         icon: '🎨',
         url: 'https://photo-caption-processor.vercel.app/'

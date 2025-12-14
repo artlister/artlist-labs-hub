@@ -776,6 +776,7 @@ body {
     color: #0a0a0a;
 }
 
+/* All Generations Modal Grid */
 .all-generations-grid {
     flex: 1;
     overflow-y: auto;
@@ -787,44 +788,17 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fill, 220px);
     gap: 20px;
-    justify-content: start;
+    width: 100%;
 }
 
-.all-generations-grid::-webkit-scrollbar {
-    width: 8px;
-}
-
-.all-generations-grid::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 4px;
-}
-
-.all-generations-grid::-webkit-scrollbar-thumb {
-    background: rgba(255, 215, 0, 0.3);
-    border-radius: 4px;
-}
-
-.all-generations-grid::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 215, 0, 0.5);
-}
-
-.all-generations-grid .empty-state {
-    grid-column: 1 / -1;
-}
-
-.all-generations-grid .empty-state {
-    grid-column: 1 / -1;
-}
-
-/* Add this new section below */
 .all-generations-grid .generation-card {
+    width: 220px;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
     overflow: hidden;
     transition: all 0.3s ease;
     cursor: pointer;
-    width: 220px;
 }
 
 .all-generations-grid .generation-card:hover {
@@ -855,3 +829,8 @@ body {
     font-size: 11px;
     color: rgba(255, 255, 255, 0.4);
 }
+
+.all-generations-grid .empty-state {
+    grid-column: 1 / -1;
+}
+

@@ -829,13 +829,13 @@ body {
     border-color: rgba(255, 255, 255, 0.15);
 }
 
-.all-generations-grid .generation-image {
+.all-gen-media {
     width: 100%;
-    aspect-ratio: auto !important;
-    max-height: 300px;
+    height: auto;
     object-fit: cover;
     background-color: rgba(255, 255, 255, 0.05);
     display: block;
+    border-radius: 8px 8px 0 0;
 }
 
 .all-generations-grid .generation-info {

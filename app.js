@@ -289,14 +289,14 @@ async function loadRecentGenerations(userId) {
                 const isVideo = mediaUrl && (mediaUrl.includes('.mp4') || mediaUrl.includes('video'));
                 
                 card.innerHTML = `
-                    ${mediaUrl ? (isVideo ? 
-                        `<video src="${mediaUrl}" class="generation-image"></video>` :
-                        `<img src="${mediaUrl}" class="generation-image" alt="Generation">`) : ''}
-                    <div class="generation-info">
-                        <div class="generation-tool">${gen.tool_name}</div>
-                        <div class="generation-date">${new Date(gen.created_at).toLocaleDateString()}</div>
-                    </div>
-                `;
+    ${mediaUrl ? (isVideo ? 
+        `<video src="${mediaUrl}" class="all-gen-media"></video>` :
+        `<img src="${mediaUrl}" class="all-gen-media" alt="Generation">`) : ''}
+    <div class="generation-info">
+        <div class="generation-tool">${gen.tool_name}</div>
+        <div class="generation-date">${new Date(gen.created_at).toLocaleDateString()}</div>
+    </div>
+`;
                 
                 // Add click handler to open lightbox
                 card.addEventListener('click', () => {
@@ -540,14 +540,14 @@ function renderAllGenerations() {
         const isVideo = mediaUrl && (mediaUrl.includes('.mp4') || mediaUrl.includes('video'));
         
         card.innerHTML = `
-            ${mediaUrl ? (isVideo ? 
-                `<video src="${mediaUrl}" class="generation-image"></video>` :
-                `<img src="${mediaUrl}" class="generation-image" alt="Generation">`) : ''}
-            <div class="generation-info">
-                <div class="generation-tool">${gen.tool_name}</div>
-                <div class="generation-date">${new Date(gen.created_at).toLocaleDateString()}</div>
-            </div>
-        `;
+    ${mediaUrl ? (isVideo ? 
+        `<video src="${mediaUrl}" class="all-gen-media"></video>` :
+        `<img src="${mediaUrl}" class="all-gen-media" alt="Generation">`) : ''}
+    <div class="generation-info">
+        <div class="generation-tool">${gen.tool_name}</div>
+        <div class="generation-date">${new Date(gen.created_at).toLocaleDateString()}</div>
+    </div>
+`;
         
         // Add click handler to open lightbox
         card.addEventListener('click', () => {

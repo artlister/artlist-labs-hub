@@ -123,11 +123,49 @@
             </div>
         </div>
     </div>
+    <div class="recent-section">
+    <div class="section-header">
+        <h2 class="section-title">Recent Generations</h2>
+        <button class="btn btn-secondary" onclick="openAllGenerations()" id="viewAllBtn">
+            <span>🎨</span>
+            <span>View All</span>
+        </button>
+    </div>
+    <div id="recent-generations" class="recent-grid">
+        <p class="empty-state">Your recent generations will appear here</p>
+    </div>
+</div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="app.js"></script>
 
     <!-- Lightbox Modal for Recent Generations -->
+     <!-- All Generations Modal -->
+<div class="all-generations-modal" id="allGenerationsModal">
+    <div class="modal-overlay" onclick="closeAllGenerations()"></div>
+    <div class="all-generations-content">
+        <div class="modal-header-bar">
+            <h2>All Generations</h2>
+            <button class="modal-close-btn" onclick="closeAllGenerations()">×</button>
+        </div>
+        
+        <div class="filter-bar">
+            <button class="filter-btn active" data-tool="all" onclick="filterGenerations('all')">
+                All Tools
+            </button>
+            <button class="filter-btn" data-tool="auto-subtitle" onclick="filterGenerations('auto-subtitle')">
+                Auto Subtitle
+            </button>
+            <button class="filter-btn" data-tool="prompt-journey" onclick="filterGenerations('prompt-journey')">
+                Prompt Journey
+            </button>
+        </div>
+        
+        <div class="all-generations-grid" id="allGenerationsGrid">
+            <p class="empty-state">Loading...</p>
+        </div>
+    </div>
+</div>
     <!-- Lightbox Modal for Recent Generations -->
 <div class="lightbox-modal" id="lightboxModal">
     <div class="lightbox-content">

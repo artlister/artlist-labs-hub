@@ -271,7 +271,7 @@ async function loadRecentGenerations(userId) {
             .select('*')
             .eq('user_id', userId)
             .order('created_at', { ascending: false })
-            .limit(8);
+            .limit(10);
         
         if (error) {
             console.error('Error loading generations:', error);
@@ -433,4 +433,102 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+});
+
+let allGenerationsData = [];
+let currentFilter = 'all';
+
+async function openAllGenerations() {
+    const modal = document.getElementById('allGenerationsModal');
+    const grid = document.getElementById('allGenerationsGrid');
+    
+    modal.classList.add('show');
+    grid.innerHTML = '<p class="empty-state">Loading...</p>';
+    
+    // Get current user
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) return;
+    
+    // Load all generations
+    const { data: generations, error } = await supabase
+        .from('generations')
+        .select('*')
+        .eq('user_id', session.user.id)
+        .order('created_at', { ascending: false });
+    
+    if (error) {
+        console.error('Error loading all generations:', error);
+        grid.innerHTML = '<p class="empty-state">Error loading generations</p>';
+        return;
+    }
+    
+    allGenerationsData = generations || [];
+    currentFilter = 'all';
+    renderAllGenerations();
+}
+
+function closeAllGenerations() {
+    const modal = document.getElementById('allGenerationsModal');
+    modal.classList.remove('show');
+}
+
+function filterGenerations(toolId) {
+    currentFilter = toolId;
+    
+    // Update active button
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    document.querySelector(`[data-tool="${toolId}"]`).classList.add('active');
+    
+    renderAllGenerations();
+}
+
+function renderAllGenerations() {
+    const grid = document.getElementById('allGenerationsGrid');
+    
+    // Filter data
+    const filtered = currentFilter === 'all' 
+        ? allGenerationsData 
+        : allGenerationsData.filter(gen => gen.tool_id === currentFilter);
+    
+    if (filtered.length === 0) {
+        grid.innerHTML = '<p class="empty-state">No generations found</p>';
+        return;
+    }
+    
+    grid.innerHTML = '';
+    filtered.forEach(gen => {
+        const card = document.createElement('div');
+        card.className = 'generation-card';
+        
+        const mediaUrl = gen.media_urls && gen.media_urls[0];
+        const isVideo = mediaUrl && (mediaUrl.includes('.mp4') || mediaUrl.includes('video'));
+        
+        card.innerHTML = `
+            ${mediaUrl ? (isVideo ? 
+                `<video src="${mediaUrl}" class="generation-image"></video>` :
+                `<img src="${mediaUrl}" class="generation-image" alt="Generation">`) : ''}
+            <div class="generation-info">
+                <div class="generation-tool">${gen.tool_name}</div>
+                <div class="generation-date">${new Date(gen.created_at).toLocaleDateString()}</div>
+            </div>
+        `;
+        
+        card.addEventListener('click', () => {
+            openLightbox(mediaUrl, isVideo, gen);
+        });
+        
+        grid.appendChild(card);
+    });
+}
+
+// Close modal on ESC key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const modal = document.getElementById('allGenerationsModal');
+        if (modal && modal.classList.contains('show')) {
+            closeAllGenerations();
+        }
+    }
 });

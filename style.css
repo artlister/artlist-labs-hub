@@ -785,9 +785,9 @@ body {
 
 .all-generations-grid .cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 220px);
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
-    justify-content: start;
+    max-width: 100%;
 }
 
 .all-generations-grid::-webkit-scrollbar {
@@ -833,7 +833,7 @@ body {
 
 .all-gen-media {
     width: 100%;
-    height: auto;
+    height: 200px;
     object-fit: cover;
     background-color: rgba(255, 255, 255, 0.05);
     display: block;

@@ -531,7 +531,10 @@ function renderAllGenerations() {
         return;
     }
     
-    grid.innerHTML = '';
+    // Create container wrapper for proper grid layout
+    grid.innerHTML = '<div class="cards-container"></div>';
+    const container = grid.querySelector('.cards-container');
+    
     filtered.forEach(gen => {
         const card = document.createElement('div');
         card.className = 'generation-card';
@@ -540,21 +543,21 @@ function renderAllGenerations() {
         const isVideo = mediaUrl && (mediaUrl.includes('.mp4') || mediaUrl.includes('video'));
         
         card.innerHTML = `
-    ${mediaUrl ? (isVideo ? 
-        `<video src="${mediaUrl}" class="all-gen-media"></video>` :
-        `<img src="${mediaUrl}" class="all-gen-media" alt="Generation">`) : ''}
-    <div class="generation-info">
-        <div class="generation-tool">${gen.tool_name}</div>
-        <div class="generation-date">${new Date(gen.created_at).toLocaleDateString()}</div>
-    </div>
-`;
+            ${mediaUrl ? (isVideo ? 
+                `<video src="${mediaUrl}" class="all-gen-media"></video>` :
+                `<img src="${mediaUrl}" class="all-gen-media" alt="Generation">`) : ''}
+            <div class="generation-info">
+                <div class="generation-tool">${gen.tool_name}</div>
+                <div class="generation-date">${new Date(gen.created_at).toLocaleDateString()}</div>
+            </div>
+        `;
         
         // Add click handler to open lightbox
         card.addEventListener('click', () => {
             openLightbox(mediaUrl, isVideo, gen);
         });
         
-        grid.appendChild(card);
+        container.appendChild(card);
     });
 }
 

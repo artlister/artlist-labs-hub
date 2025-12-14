@@ -303,7 +303,7 @@ async function loadRecentGenerations(userId) {
                     openLightbox(mediaUrl, isVideo, gen);
                 });
                 
-                container.appendChild(card);
+                recentGrid.appendChild(card);
             });
         } else {
             recentGrid.innerHTML = '<p class="empty-state">Your recent generations will appear here</p>';
@@ -531,8 +531,7 @@ function renderAllGenerations() {
         return;
     }
     
-    grid.innerHTML = '<div class="cards-container"></div>';
-const container = grid.querySelector('.cards-container');
+    grid.innerHTML = '';
     filtered.forEach(gen => {
         const card = document.createElement('div');
         card.className = 'generation-card';

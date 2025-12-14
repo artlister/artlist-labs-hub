@@ -464,7 +464,41 @@ async function openAllGenerations() {
     
     allGenerationsData = generations || [];
     currentFilter = 'all';
+    
+    // Generate filter buttons dynamically
+    generateFilterButtons();
+    
     renderAllGenerations();
+}
+
+function generateFilterButtons() {
+    const filterBar = document.querySelector('.filter-bar');
+    
+    // Get unique tools from the data
+    const uniqueTools = new Map();
+    allGenerationsData.forEach(gen => {
+        if (!uniqueTools.has(gen.tool_id)) {
+            uniqueTools.set(gen.tool_id, gen.tool_name);
+        }
+    });
+    
+    // Build filter buttons
+    let buttonsHTML = `
+        <button class="filter-btn active" data-tool="all" onclick="filterGenerations('all')">
+            All Tools (${allGenerationsData.length})
+        </button>
+    `;
+    
+    uniqueTools.forEach((toolName, toolId) => {
+        const count = allGenerationsData.filter(g => g.tool_id === toolId).length;
+        buttonsHTML += `
+            <button class="filter-btn" data-tool="${toolId}" onclick="filterGenerations('${toolId}')">
+                ${toolName} (${count})
+            </button>
+        `;
+    });
+    
+    filterBar.innerHTML = buttonsHTML;
 }
 
 function closeAllGenerations() {
@@ -515,6 +549,7 @@ function renderAllGenerations() {
             </div>
         `;
         
+        // Add click handler to open lightbox
         card.addEventListener('click', () => {
             openLightbox(mediaUrl, isVideo, gen);
         });

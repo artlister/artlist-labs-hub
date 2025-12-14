@@ -555,7 +555,7 @@ const container = grid.querySelector('.cards-container');
             openLightbox(mediaUrl, isVideo, gen);
         });
         
-        container.appendChild(card);
+        grid.appendChild(card);
     });
 }
 

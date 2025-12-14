@@ -303,7 +303,7 @@ async function loadRecentGenerations(userId) {
                     openLightbox(mediaUrl, isVideo, gen);
                 });
                 
-                recentGrid.appendChild(card);
+                container.appendChild(card);
             });
         } else {
             recentGrid.innerHTML = '<p class="empty-state">Your recent generations will appear here</p>';
@@ -531,7 +531,8 @@ function renderAllGenerations() {
         return;
     }
     
-    grid.innerHTML = '';
+    grid.innerHTML = '<div class="cards-container"></div>';
+const container = grid.querySelector('.cards-container');
     filtered.forEach(gen => {
         const card = document.createElement('div');
         card.className = 'generation-card';
@@ -554,7 +555,7 @@ function renderAllGenerations() {
             openLightbox(mediaUrl, isVideo, gen);
         });
         
-        grid.appendChild(card);
+        container.appendChild(card);
     });
 }
 

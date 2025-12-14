@@ -781,10 +781,12 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
     padding: 32px;
+}
+
+.all-generations-grid .cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 220px));
+    grid-template-columns: repeat(auto-fill, 220px);
     gap: 20px;
-    align-content: start;
     justify-content: start;
 }
 

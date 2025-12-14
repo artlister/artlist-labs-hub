@@ -88,6 +88,24 @@ body {
     border: none;
 }
 
+.primary-btn {
+    width: 100%;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #0a0a0a;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+}
+
 .btn-primary {
     background: linear-gradient(135deg, #FFD700, #FFA500);
     color: #0a0a0a;

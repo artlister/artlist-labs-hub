@@ -129,56 +129,51 @@
             </div>
         </div>
     </div>
-</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="app.js"></script>
-
-    <!-- Lightbox Modal for Recent Generations -->
-     <!-- All Generations Modal -->
-<div class="all-generations-modal" id="allGenerationsModal">
-    <div class="modal-overlay" onclick="closeAllGenerations()"></div>
-    <div class="all-generations-content">
-        <div class="modal-header-bar">
-            <h2>All Generations</h2>
-            <button class="modal-close-btn" onclick="closeAllGenerations()">×</button>
-        </div>
-        
-        <div class="filter-bar">
-    <!-- Filters will be generated dynamically -->
-</div>
-        
-        <div class="all-generations-grid" id="allGenerationsGrid">
-            <p class="empty-state">Loading...</p>
+    <!-- All Generations Modal -->
+    <div class="all-generations-modal" id="allGenerationsModal">
+        <div class="modal-overlay" onclick="closeAllGenerations()"></div>
+        <div class="all-generations-content">
+            <div class="modal-header-bar">
+                <h2>All Generations</h2>
+                <button class="modal-close-btn" onclick="closeAllGenerations()">×</button>
+            </div>
+            
+            <div class="filter-bar">
+                <!-- Filters will be generated dynamically -->
+            </div>
+            
+            <div class="all-generations-grid" id="allGenerationsGrid">
+                <p class="empty-state">Loading...</p>
+            </div>
         </div>
     </div>
-</div>
+
     <!-- Lightbox Modal for Recent Generations -->
-<div class="lightbox-modal" id="lightboxModal">
-    <div class="lightbox-content">
-        <button class="lightbox-close" id="lightboxClose">×</button>
-        <img src="" alt="Generation" id="lightboxImage">
-        <video src="" controls id="lightboxVideo" style="display: none;"></video>
-        <div class="lightbox-info">
-            <div class="lightbox-prompt" id="lightboxPrompt"></div>
-            <div class="lightbox-meta" id="lightboxMeta"></div>
-        </div>
-        <div class="lightbox-actions">
-            <button class="btn btn-secondary" id="lightboxCopyPrompt" style="display: none;">
-                <span>📋</span>
-                <span>Copy Prompt</span>
-            </button>
-            <button class="btn btn-primary" id="lightboxDownload">
-                <span>⬇️</span>
-                <span>Download</span>
-            </button>
+    <div class="lightbox-modal" id="lightboxModal">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose">×</button>
+            <img src="" alt="Generation" id="lightboxImage">
+            <video src="" controls id="lightboxVideo" style="display: none;"></video>
+            <div class="lightbox-info">
+                <div class="lightbox-prompt" id="lightboxPrompt"></div>
+                <div class="lightbox-meta" id="lightboxMeta"></div>
+            </div>
+            <div class="lightbox-actions">
+                <button class="btn btn-secondary" id="lightboxCopyPrompt" style="display: none;">
+                    <span>📋</span>
+                    <span>Copy Prompt</span>
+                </button>
+                <button class="btn btn-primary" id="lightboxDownload">
+                    <span>⬇️</span>
+                    <span>Download</span>
+                </button>
+            </div>
         </div>
     </div>
-</div>
 
+    <!-- Load Supabase and app.js ONLY ONCE -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="app.js"></script>
-</body>
-</html>
 </body>
 </html>
